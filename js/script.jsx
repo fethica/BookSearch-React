@@ -108,8 +108,9 @@ var Main = React.createClass({
       component.setState(data);
       bookshelf();
 
-      for (var i = 0; i < component.state.items.length; i++) {
+      $(".front").css("background", "url(img/no_book_cover.jpg)");
 
+      for (var i = 0; i < component.state.items.length; i++) {
         if (component.state.items[i].volumeInfo.imageLinks != null) {
 
           $("#book-" + component.state.items[i].id).find(".front").css("background", "url("+ component.state.items[i].volumeInfo.imageLinks.thumbnail +")");
