@@ -104,6 +104,20 @@ a:hover, a:focus {
 	content: "\e004";
 }
 
+.search-icon  {
+	font-size: 100px;
+	display: block;
+	margin: 0 auto 0 auto;
+	text-align: center;
+	height: 250px;
+}
+
+.search-icon span {
+	margin-top: 100px;
+	color: #bbb;
+	text-shadow: 0 2px 2px #fff; 
+}
+
 .related {
 	margin-top: 5em;
 	color: #fff;
