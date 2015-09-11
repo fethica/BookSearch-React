@@ -4,11 +4,11 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2014, Codrops
  * http://www.codrops.com
  */
-(function() {
+function bookshelf() {
 
 	var supportAnimations = 'WebkitAnimation' in document.body.style ||
 			'MozAnimation' in document.body.style ||
@@ -90,7 +90,7 @@
 
 	Book.prototype._open = function() {
 		docscroll = scrollY();
-		
+
 		classie.add( this.el, 'open' );
 		classie.add( this.bbWrapper, 'show' );
 
@@ -158,4 +158,4 @@
 
 	init();
 
-})();
+}
