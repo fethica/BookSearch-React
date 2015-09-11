@@ -32,30 +32,114 @@ var Header = React.createClass({
   }
 });
 
-var Main = React.createClass({
+var Books = React.createClass({
 
   getInitialState : function () {
     return ({});
   },
+  componentDidMount : function () {
+
+    if (this.props.item != null) {
+      this.setState(this.props.item);
+    }
+
+  },
+  render : function () {
+
+    var authors = "";
+
+    if (this.state.authors != null) {
+      for (var i = 0; i < this.state.authors.length; i++) {
+
+        if (i > 1) {
+          authors = ", " + this.state.authors[i];
+        } else {
+          authors = this.state.authors[i];
+        }
+      }
+    }
+
+    var descrip = "...";
+
+    if (this.state.description != null) {
+      descrip = this.state.description.substring(0, 180) + "...";
+    }
+
+    var id = "";
+
+    if (this.props.identifier != null) {
+      id = "book-" + this.props.identifier;
+    }
+
+    return (
+
+      <figure>
+        <div className="book" id={id}></div>
+        <div className="buttons"><a href={this.state.previewLink} target="_blank">Preview</a><a href="#">Details</a></div>
+        <figcaption><h2>{this.state.title}<span>{authors}</span></h2></figcaption>
+        <div className="details">
+          <ul>
+            <li>{descrip}</li>
+            <li>{this.state.publishedDate}</li>
+            <li>{this.state.publisher}</li>
+            <li>{this.state.pageCount} pages</li>
+          </ul>
+        </div>
+      </figure>
+
+    );
+  }
+
+});
+
+var Main = React.createClass({
+
+  getInitialState : function () {
+    return ({items: []});
+  },
 
   localSubmit : function (search) {
 
-    this.setState({});
+    this.setState({items: []});
     var component = this;
 
-  },
+    $.get("https://www.googleapis.com/books/v1/volumes?q=intitle:" + encodeURIComponent(search) + "&printType=books&orderBy=newest&maxResults=39", function (data) {
 
-  componentDidMount : function () {
+      component.setState(data);
+      bookshelf();
+
+      for (var i = 0; i < component.state.items.length; i++) {
+
+        if (component.state.items[i].volumeInfo.imageLinks != null) {
+
+          $("#book-" + component.state.items[i].id).find(".front").css("background", "url("+ component.state.items[i].volumeInfo.imageLinks.thumbnail +")");
+        }
+      }
+
+      $(".front").css("background-size", "100% 100%");
+      $(".front").css("border", "2px solid #eee");
+      $(".front").css("background-size", "100% 100%");
+
+    });
+
   },
 
   render : function () {
+
+    var books = [];
+
+    for (var i = 0; i < this.state.items.length; i++) {
+
+      books.push(<Books item={this.state.items[i].volumeInfo} identifier={this.state.items[i].id}/>);
+
+    }
 
     return (
       <div>
       <Header localSubmit={this.localSubmit}/>
         <div className="main">
   				<div id="bookshelf" className="bookshelf">
-
+            {books}
           </div>
         </div>
       </div>
