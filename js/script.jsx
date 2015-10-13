@@ -189,4 +189,3 @@ var Main = React.createClass({
 });
 
 React.render(<Main />, document.getElementById("scroll-wrap"));
-console.log($(".related").height());
