@@ -158,18 +158,15 @@ var Main = React.createClass({
 
     var books = [];
 
-    for (var i = 0; i < this.state.items.length; i++) {
-
-      books.push(<Books item={this.state.items[i].volumeInfo} identifier={this.state.items[i].id}/>);
-
-    }
+    books = this.state.items.map(function(book) {
+      return <Books key={book.id} item={book.volumeInfo} identifier={book.id} />;
+    });
 
     if (books.length > 0) {
       content = books;
     } else {
       content = <div className="search-icon"><span className="glyphicon glyphicon-search"></span></div>
     }
-
 
     return (
       <div>
