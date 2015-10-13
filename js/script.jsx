@@ -2,7 +2,7 @@ var Header = React.createClass({
 
   handleSubmit : function (e) {
     e.preventDefault();
-    var input = React.findDOMNode(this.refs.search);
+    var input = ReactDOM.findDOMNode(this.refs.search);
 
     this.props.localSubmit(input.value);
 
@@ -188,4 +188,4 @@ var Main = React.createClass({
 
 });
 
-React.render(<Main />, document.getElementById("scroll-wrap"));
+ReactDOM.render(<Main />, document.getElementById("scroll-wrap"));
