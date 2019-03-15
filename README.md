@@ -1,11 +1,13 @@
 # BookSearch-React
 A simple Book Search app using React JS and Google Books API
 
-<img src="http://fethica.github.io/BookSearch-React/img/browser_books.jpg" alt="Book Search Preview" />
+<p align="center">
+  <img src="https://raw.githubusercontent.com/fethica/BookSearch-React/master/img/browser_books.jpg" alt="Book Search Preview" />
+</p>
 
-Demo : http://fethica.github.io/BookSearch-React/
+Demo: https://fethica.github.io/BookSearch-React/
 
-##Credits :
+## Credits :
 
 - [Book Preview.](http://tympanus.net/codrops/2014/01/14/look-inside-book-preview-with-bookblock/)
 - [React JS.](http://facebook.github.io/react/)
